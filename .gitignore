@@ -9,6 +9,7 @@ media
 # Backup files # 
 *.bak 
 
+#Ignore all .pyc
 **/*.pyc
 
 # If you are using PyCharm # 
