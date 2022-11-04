@@ -13,12 +13,12 @@ def index(request):
 
 # should be a generic list view (generic.ListView)
 # view of the potlucks
-class PotlucksView(generic.ListView):
+def PotlucksView(request):
     # filler template name but not a bad idea I think
     template_name = "pots/potlucks.html"
-    return HttpResponse(request, template_name, {})
+    return render(request, template_name, {})
 
 # for creating a potluck
-def PotluckView(request):
+def CreatePotluckView(request):
     template_name = "pots/create_potluck.html"
-    return HttpResponse(request, template_name, {})
+    return render(request, template_name, {})
