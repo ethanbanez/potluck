@@ -1,4 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import generic
+
+# imports the potluck models to query from
+# from .models import Potlucks
 
 def index(request):
     """View function for home page of site."""
@@ -6,3 +11,14 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html')
 
+# should be a generic list view (generic.ListView)
+# view of the potlucks
+class PotlucksView(generic.ListView):
+    # filler template name but not a bad idea I think
+    template_name = "pots/potlucks.html"
+    return HttpResponse(request, template_name, {})
+
+# for creating a potluck
+def PotluckView(request):
+    template_name = "pots/create_potluck.html"
+    return HttpResponse(request, template_name, {})
