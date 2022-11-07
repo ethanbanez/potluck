@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 
-<html lang=="en">
+<html lang="en">
     <head>
+        <meta charset="UTF-8" />
         <title>Create Potluck View</title>
     </head>
-
     <body>
-        <h1>Create Potluck view coming soon</h1>
-        <p>Under construction</p>
+        <h1>Create Potluck</h1>
+        <img src="https://images.squarespace-cdn.com/content/v1/542465a1e4b09bca15ef7159/1559249420921-6AE29HE0SRTG3LDFF2TJ/potluck+icon%402x-8.png?format=500w" alt="create a potluck">
+
+        <form action="{% url 'potlucks' %}" method="post">
+            <br>
+            <label for="name">What is the name of your potluck?</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="date">What is the date of your potluck?</label>
+            <input type="date" id="date" name="date" value="mm-dd-yyyy"><br><br>
+
+            <input type="submit" value="Create potluck">
+        </form>
+        <br>
         <a href="{% url 'index' %}">Back to home</a>
     </body>
 </html>

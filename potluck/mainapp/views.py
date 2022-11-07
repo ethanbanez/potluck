@@ -4,6 +4,7 @@ from django.views import generic
 
 # imports the potluck models to query from
 # from .models import Potlucks
+from .models import Potluck
 
 def index(request):
     """View function for home page of site."""
@@ -20,5 +21,6 @@ def PotlucksView(request):
 
 # for creating a potluck
 def CreatePotluckView(request):
+    potlucks_list = Potluck.objects
     template_name = "pots/create_potluck.html"
     return render(request, template_name, {})
