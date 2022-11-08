@@ -13,17 +13,23 @@
 
         <img id="create-potluck" src="https://img.freepik.com/premium-vector/hand-drawn-potluck-illustration_23-2149591950.jpg?w=2000" alt="create a potluck">
         <form action="{% url 'addrecord' %}" method="post">
-            {% csrf_token %}
-            <br>
-            <label for="name">What is the name of your potluck?</label>
-            <input type="text" id="name" name="name" required><br><br>
+            <ul id="flex-outer">
+                {% csrf_token %}
+                <li>
+                    <label for="name">What is the name of your potluck?</label>
+                    <input type="text" id="name" name="name" required>
+                </li>
 
-            <label for="date">What is the date of your potluck?</label>
-            <input type="datetime-local" id="date" name="date" value="YYYY-MM-DD"><br><br>
+                <li>
+                    <label for="date">What is the date of your potluck?</label>
+                    <input id="datetime-input" type="datetime-local" id="date" name="date" required>
+                </li>
 
-            <input type="submit" value="Create potluck">
+                <li>
+                    <input id="submit" type="submit" value="Create potluck">
+                </li>
+            </ul>
         </form>
-        <br>
         <a href="{% url 'index' %}">Back to home</a>
     </body>
 </html>
