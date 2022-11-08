@@ -1,0 +1,20 @@
+html {
+    background: #e9c8a4;
+}
+
+h1, body {
+    text-align: center;
+    font-family:'Courier New', Courier, monospace
+}
+
+/* FOR CREATE POTLUCK PAGE */
+#create-potluck {
+    max-width: 40%; 
+    height: auto;
+}
+
+/* FOR LIST POTLUCKS PAGE */
+ul {
+    text-align: center;
+    /* tight fit view */
+}

@@ -8,6 +8,8 @@
 <html lang="en">
   <head>
     <title>TheLuckyPot</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'pots/style.css' %}">
   </head>
       
 <body>
@@ -15,9 +17,7 @@
     Welcome to the Dream Land for Potlucks<br>
   </h1>
   <p>by Team Garrix: Todd, Nancy, Valentina, and Ethan</p>
-  <ul>
-    <li><a href="{% url 'potlucks' %}">Potlucks</a></li>
-    <li><a href="{% url 'create_potluck' %}">Create Potluck</a></li>
-  </ul>
+  <a href="{% url 'potlucks' %}">Potlucks</a>
+  <a href="{% url 'create_potluck' %}">Create Potluck</a>
 </body>
 </html>
