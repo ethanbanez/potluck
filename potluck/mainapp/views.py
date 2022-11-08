@@ -1,5 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.template import loader
+from django.urls import reverse
 from django.views import generic
 
 # imports the potluck models to query from
@@ -15,12 +17,22 @@ def index(request):
 # should be a generic list view (generic.ListView)
 # view of the potlucks
 def PotlucksView(request):
-    # filler template name but not a bad idea I think
-    template_name = "pots/potlucks.html"
-    return render(request, template_name, {})
+    mypotlucks = Potluck.objects.all().values()
+    template = loader.get_template("pots/potlucks.html")
+    context = {
+        'mypotlucks': mypotlucks,
+    }
+    return HttpResponse(template.render(context, request))
 
 # for creating a potluck
 def CreatePotluckView(request):
-    potlucks_list = Potluck.objects
+    potluck_list = Potluck.objects
     template_name = "pots/create_potluck.html"
     return render(request, template_name, {})
+
+def addrecord(request):
+    x = request.POST['name']
+    y = request.POST['date']
+    potluck = Potluck(name=x, date=y)
+    potluck.save()
+    return HttpResponseRedirect(reverse('potlucks'))

@@ -11,11 +11,10 @@
         <img src="https://vak1969.com/wp-content/uploads/2019/01/Food-Unites-All-of-Us-Horizontal-640x426.jpg" alt="#foodUnitesUs">
         <h2>Yum!</h2>
         <h3>Here is your list of potlucks:</h3>
-        {% if potlucks_list %}
+        {% if mypotlucks %}
         <ul>
-        {% for pl in potlucks_list.all %}
-            <li> Potluck name: {{ pl.name }}</li>
-            <li> Potluck date: {{ pl.date }}</li>
+        {% for pl in mypotlucks %}
+            <li>{{ pl.name }} on {{ pl.date }}</li>
         {% endfor %}
         </ul>
         {% else %}
