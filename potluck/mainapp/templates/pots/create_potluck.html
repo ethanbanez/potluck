@@ -16,10 +16,10 @@
             {% csrf_token %}
             <br>
             <label for="name">What is the name of your potluck?</label>
-            <input type="text" id="name" name="name"><br><br>
+            <input type="text" id="name" name="name" required><br><br>
 
             <label for="date">What is the date of your potluck?</label>
-            <input type="date" id="date" name="date" value="YYYY-MM-DD"><br><br>
+            <input type="datetime-local" id="date" name="date" value="YYYY-MM-DD"><br><br>
 
             <input type="submit" value="Create potluck">
         </form>
