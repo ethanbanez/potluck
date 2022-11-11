@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Create Potluck View</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+    </head>
+    <body>
+        <h1>Create Potluck</h1>
+        <!-- <img src="https://images.squarespace-cdn.com/content/v1/542465a1e4b09bca15ef7159/1559249420921-6AE29HE0SRTG3LDFF2TJ/potluck+icon%402x-8.png?format=500w" alt="create a potluck"> -->
+
+        <img id="create-potluck" src="https://img.freepik.com/premium-vector/hand-drawn-potluck-illustration_23-2149591950.jpg?w=2000" alt="create a potluck">
+        <form action="{% url 'addrecord' %}" method="post">
+            <ul id="flex-outer">
+                {% csrf_token %}
+                <li>
+                    <label for="name">What is the name of your potluck?</label>
+                    <input type="text" id="name" name="name" required>
+                </li>
+
+                <li>
+                    <label for="date">What is the date of your potluck?</label>
+                    <input id="datetime-input" type="datetime-local" id="date" name="date" required>
+                </li>
+
+                <li>
+                    <input id="submit" type="submit" value="Create potluck">
+                </li>
+            </ul>
+        </form>
+        <a href="{% url 'index' %}">Back to home</a>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+html {
+    background: #e9c8a4;
+}
+
+body, input {
+    text-align: center;
+    font-size: large;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body, ul {
+    display: flex;
+    align-content: space-around;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+li, #submit {
+    padding: 5px;
+}
+
+#datetime-input, input {
+    flex-direction: row-reverse;
+}
+
+a {
+    color: #503923;
+}
+
+a:hover {
+    color: hsl(24, 100%, 46%);
+}
+
+/* FOR CREATE POTLUCK PAGE */
+#create-potluck {
+    max-width: 40%; 
+    height: auto;
+}

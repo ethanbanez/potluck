@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Potlucks View</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+    </head>
+
+    <body>
+        <h1>View your potlucks</h1>
+        <img src="https://vak1969.com/wp-content/uploads/2019/01/Food-Unites-All-of-Us-Horizontal-640x426.jpg" alt="#foodUnitesUs">
+        <h3>Here is your list of potlucks:</h3>
+        {% if mypotlucks %}
+        <ul>
+        {% for pl in mypotlucks %}
+            <li>{{ pl.name }} on {{ pl.date }}</li>
+        {% endfor %}
+        </ul>
+        {% else %}
+            <p>No potlucks are available.</p>
+        {% endif %}
+
+        <a href="{% url 'index' %}">Back to home</a>
+    </body>
+</html>
