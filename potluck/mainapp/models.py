@@ -10,5 +10,7 @@ class Potluck(models.Model):
 class Item(models.Model):
     potluck = models.ForeignKey(Potluck, on_delete=models.CASCADE)
     item = models.CharField(max_length=64, blank=True, null=True)
+    contributor = models.CharField(max_length=64, blank=True, null=True)
+    contributor_email = models.EmailField(max_length=64, blank=True, null=True)
     def __str__(self):
         return self.item
