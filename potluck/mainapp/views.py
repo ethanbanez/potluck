@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
@@ -29,6 +29,17 @@ def CreatePotluckView(request):
     potluck_list = Potluck.objects
     template_name = "pots/create_potluck.html"
     return render(request, template_name, {})
+
+def PotluckView(request, potluck_id):
+    try:
+        potluck=Potluck.objects.get(pk=potluck_id)
+    except Potluck.DoesNotExist:
+        raise Http404("Potluck does not exist.")
+    template = loader.get_template("pots/potluck.html")
+    context={
+        'potluck': potluck,
+    }
+    return HttpResponse(template.render(context, request))
 
 def addrecord(request):
     x = request.POST['name']
