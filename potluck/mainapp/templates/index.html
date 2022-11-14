@@ -5,7 +5,7 @@
 
   This webpage is the main or home page of the portluck website.
 -->
-<html lang="en">
+<html lang="en">`
   <head>
     <title>TheLuckyPot</title>
     {% load static %}
@@ -17,7 +17,7 @@
     Welcome to the Dream Land for Potlucks<br>
   </h1>
   <p>by Team Garrix: Todd, Nancy, Valentina, and Ethan</p>
-  <a href="{% url 'potlucks' %}">Potlucks</a>
-  <a href="{% url 'create_potluck' %}">Create Potluck</a>
+  <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
+  <a href="{% url 'mainapp:create_potluck' %}">Create Potluck</a>
 </body>
 </html>

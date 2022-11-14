@@ -46,4 +46,4 @@ def addrecord(request):
     y = request.POST['date']
     potluck = Potluck(name=x, date=y)
     potluck.save()
-    return HttpResponseRedirect(reverse('potlucks'))
+    return HttpResponseRedirect(reverse('mainapp:potlucks'))

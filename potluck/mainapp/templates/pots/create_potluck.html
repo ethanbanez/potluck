@@ -12,7 +12,7 @@
         <!-- <img src="https://images.squarespace-cdn.com/content/v1/542465a1e4b09bca15ef7159/1559249420921-6AE29HE0SRTG3LDFF2TJ/potluck+icon%402x-8.png?format=500w" alt="create a potluck"> -->
 
         <img id="create-potluck" src="https://img.freepik.com/premium-vector/hand-drawn-potluck-illustration_23-2149591950.jpg?w=2000" alt="create a potluck">
-        <form action="{% url 'addrecord' %}" method="post">
+        <form action="{% url 'mainapp:addrecord' %}" method="post">
             <ul id="flex-outer">
                 {% csrf_token %}
                 <li>
@@ -30,6 +30,6 @@
                 </li>
             </ul>
         </form>
-        <a href="{% url 'index' %}">Back to home</a>
+        <a href="{% url 'mainapp:index' %}">Back to home</a>
     </body>
 </html>
