@@ -2,6 +2,12 @@ html {
     background: #e9c8a4;
 }
 
+/* FOR CREATE POTLUCK PAGE */
+#create-potluck {
+    width: 30%;
+    height: auto;
+}
+
 body, input {
     text-align: center;
     font-size: large;
@@ -33,10 +39,4 @@ a {
 
 a:hover {
     color: hsl(24, 100%, 46%);
-}
-
-/* FOR CREATE POTLUCK PAGE */
-#create-potluck {
-    max-width: 40%; 
-    height: auto;
 }
