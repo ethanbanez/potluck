@@ -16,7 +16,11 @@
             {% csrf_token %}
             <ul id="flex-outer">
                 {% for it in items %}
-                <li>{{ it }}<input type="text" id="{{ it }}" name="{{ it }}" placeholder="Name"><input type="text" id="{{ it }}" name="{{ it }}" placeholder="Email"></li>
+                {% if it.contributor %}
+                <li>{{ it.item }} is being brought by {{ it.contributor }}</li>
+                {% else %}
+                <li>{{ it.item }}<input type="text" id="{{ it }}" name="{{ it }}" placeholder="Name"><input type="text" id="{{ it }}" name="{{ it }}" placeholder="Email"></li>
+                {% endif %}
                 {% endfor %}
                 <input id="submit" type="submit" value="Sign Up">
             </ul>

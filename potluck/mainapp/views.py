@@ -71,12 +71,15 @@ def item_sign_up(request, potluck_id):
 
     people = request.POST.copy()
 
-    items = Item.objects.filter(potluck__pk = potluck_id)                                       
-    
+    items = Item.objects.filter(potluck__pk = potluck_id)                                   
+
     for it in items:
-        p = people.pop(it.item)
-        it.contributor = p[0]
-        it.contributor_email = p[1]
-        it.save()
+        try:
+            p = people.pop(it.item)
+            it.contributor = p[0]
+            it.contributor_email = p[1]
+            it.save()
+        except KeyError:
+            pass
 
     return HttpResponseRedirect(reverse('mainapp:potlucks'))
