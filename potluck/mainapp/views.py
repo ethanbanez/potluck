@@ -44,6 +44,7 @@ def PotluckView(request, potluck_id):
 def addrecord(request):
     x = request.POST['name']
     y = request.POST['date']
-    potluck = Potluck(name=x, date=y)
+    z = request.POST['host']
+    potluck = Potluck(name=x, date=y, host=z)
     potluck.save()
     return HttpResponseRedirect(reverse('mainapp:potlucks'))
