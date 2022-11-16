@@ -6,14 +6,34 @@
         <title>Create Potluck View</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+        <script type="text/javascript">
+
+            foodCount = 1;
+
+            function addItem(){
+                foodCount++;
+                document.getElementById("items").innerHTML += "<li><input type=\"text\" id=\"food" + foodCount + "\" name=\"food" + foodCount + "\"></li>";
+            }
+
+            function removeItem(){
+                
+                it = document.getElementById("food" + foodCount);
+
+                if(it.parentNode.parentNode.childElementCount > 1){
+                    it.parentNode.parentNode.removeChild(it.parentNode);
+                    foodCount--;
+                }
+            }
+
+        </script>
     </head>
     <body>
         <h1>Create Potluck</h1>
 
         <img id="create-potluck" src="https://img.freepik.com/premium-vector/hand-drawn-potluck-illustration_23-2149591950.jpg?w=2000" alt="create a potluck">
-        <form action="{% url 'mainapp:addrecord' %}" method="post">
+        <form id="create_potluck_form" action="{% url 'mainapp:addrecord' %}" method="post">
+            {% csrf_token %}
             <ul id="flex-outer">
-                {% csrf_token %}
                 <li>
                     <label for="name">What is the name of your potluck?</label>
                     <input type="text" id="name" name="name" required>
@@ -27,6 +47,22 @@
                 <li>
                     <label for="host">Who is hosting the potluck?</label>
                     <input type="text" id="host" name="host" required>
+                </li>
+
+                <li>What foods would you like people to bring?</li>
+
+
+                <fieldset id="items">
+
+                    <li>
+                        <input type="text" id="food1" name="food1" required>
+                    </li>
+
+                </fieldset>
+
+                <li>
+                    <button type="button" name="add_item" onclick="addItem()">Add item</button>
+                    <button type="button" name="remove_item" onclick="removeItem()">Remove item</button>
                 </li>
 
                 <li>
