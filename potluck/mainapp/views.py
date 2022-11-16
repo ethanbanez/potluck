@@ -6,7 +6,7 @@ from django.views import generic
 
 # imports the potluck models to query from
 # from .models import Potlucks
-from .models import Potluck
+from .models import Potluck, Item
 
 def index(request):
     """View function for home page of site."""
@@ -47,4 +47,16 @@ def addrecord(request):
     z = request.POST['host']
     potluck = Potluck(name=x, date=y, host=z)
     potluck.save()
+
+    #iterate through foods
+    items = request.POST.dict()
+    item_arr = []
+    for key, value in items.items():
+        if key.startswith('food'):
+            item_arr.append(value)
+
+    for food in item_arr:
+        item = Item(potluck=potluck, item=food)
+        item.save()
+        
     return HttpResponseRedirect(reverse('mainapp:potlucks'))
