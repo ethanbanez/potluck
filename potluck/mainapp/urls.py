@@ -8,4 +8,5 @@ urlpatterns = [
     path('potluck/<int:potluck_id>', views.PotluckView, name='potluck'),
     path('create', views.CreatePotluckView, name='create_potluck'),
     path('addrecord', views.addrecord, name='addrecord'),
+    path('item_sign_up/<int:potluck_id>', views.item_sign_up, name='item_sign_up'),
 ]

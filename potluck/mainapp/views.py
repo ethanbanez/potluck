@@ -35,9 +35,15 @@ def PotluckView(request, potluck_id):
         potluck=Potluck.objects.get(pk=potluck_id)
     except Potluck.DoesNotExist:
         raise Http404("Potluck does not exist.")
+
+    try:
+        items=Item.objects.filter(potluck__pk = potluck_id)
+    except Item.DoesNotExist:
+        raise Http404("No items found")
     template = loader.get_template("pots/potluck.html")
     context={
         'potluck': potluck,
+        'items': items,
     }
     return HttpResponse(template.render(context, request))
 
@@ -59,4 +65,18 @@ def addrecord(request):
         item = Item(potluck=potluck, item=food)
         item.save()
         
+    return HttpResponseRedirect(reverse('mainapp:potlucks'))
+
+def item_sign_up(request, potluck_id):
+
+    people = request.POST.copy()
+
+    items = Item.objects.filter(potluck__pk = potluck_id)                                       
+    
+    for it in items:
+        p = people.pop(it.item)
+        it.contributor = p[0]
+        it.contributor_email = p[1]
+        it.save()
+
     return HttpResponseRedirect(reverse('mainapp:potlucks'))
