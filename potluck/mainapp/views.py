@@ -82,4 +82,4 @@ def item_sign_up(request, potluck_id):
         except KeyError:
             pass
 
-    return HttpResponseRedirect(reverse('mainapp:potlucks'))
+    return HttpResponseRedirect(reverse('mainapp:potluck', args=(potluck_id,)))

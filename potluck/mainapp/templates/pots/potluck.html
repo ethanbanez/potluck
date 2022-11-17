@@ -17,7 +17,7 @@
             <ul id="flex-outer">
                 {% for it in items %}
                 {% if it.contributor %}
-                <li>{{ it.item }} is being brought by {{ it.contributor }}</li>
+                <li>{{ it.contributor }} is bringing {{ it.item }}</li>
                 {% else %}
                 <li>{{ it.item }}<input type="text" id="{{ it }}" name="{{ it }}" placeholder="Name"><input type="text" id="{{ it }}" name="{{ it }}" placeholder="Email"></li>
                 {% endif %}
@@ -28,5 +28,6 @@
             <p>No items for selected potluck</p>
         {% endif %}
         </form>
+        <a href="{% url 'mainapp:index' %}">Back to Home</a>
     </body>
 </html>
