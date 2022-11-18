@@ -83,3 +83,21 @@ def item_sign_up(request, potluck_id):
             pass
 
     return HttpResponseRedirect(reverse('mainapp:potluck', args=(potluck_id,)))
+
+def calendar(request):
+    all_events = Potluck.objects.all()
+    context = {
+        "events":all_events,
+    }
+    return render(request,'calendar.html',context)
+
+def all_events(request):                                                                                                 
+    all_events = Potluck.objects.all()                                                                                    
+    out = []                                                                                                             
+    for event in all_events:                                                                                             
+        out.append({                                                                                                     
+            'title': event.name,
+            'start': event.date.strftime("%m/%d/%Y, %H:%M:%S"),                                                                                         
+            'host': event.host,                                                             
+        })                                                                                                                                                                                                                         
+    return HttpResponse(json.dumps(out))
