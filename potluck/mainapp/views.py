@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
-import datetime
+from datetime import timedelta, datetime
 
 # imports the potluck models to query from
 # from .models import Potlucks
@@ -54,7 +54,11 @@ def addrecord(request):
     x = request.POST['name']
     y = request.POST['date']
     z = request.POST['host']
-    potluck = Potluck(name=x, date=y, host=z)
+
+    format = "%Y-%m-%dT%H:%M"
+    
+    d=datetime.strptime(y, format)
+    potluck = Potluck(name=x, start_date_time=d, end_date_time=d + timedelta(hours = 1), host=z)
     potluck.save()
 
     #iterate through foods
@@ -100,8 +104,8 @@ def all_events(request):
     for event in all_events:                                                                                             
         out.append({                                                                                                     
             'title': event.name,
-            'start': event.date.strftime("%m/%d/%Y, %H:%M:%S"),
-            'end' : event.date.strftime("%m/%d/%Y, %H:%M:%S"),
+            'start': event.start_date_time.strftime("%m/%d/%Y, %H:%M:%S"),
+            'end' : event.end_date_time.strftime("%m/%d/%Y, %H:%M:%S"),
             'host': event.host,                                                             
         })                                                                                                                                                                                                                         
     return JsonResponse(out, safe=False)

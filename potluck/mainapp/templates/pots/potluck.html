@@ -16,7 +16,7 @@
         </nav>
 
         <h1>{{ potluck.name }}</h1>
-        <h2>Hosted by {{ potluck.host }} on {{ potluck.date }}</h2>
+        <h2>Hosted by {{ potluck.host }} on {{ potluck.start_date_time }}</h2>
         {% if items %}
         <p>Sign up to bring an item below</p>
         <form id="item_sign_up_form" action="{% url 'mainapp:item_sign_up' potluck.id %}" method="post">

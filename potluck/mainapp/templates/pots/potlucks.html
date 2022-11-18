@@ -19,7 +19,7 @@
         {% if mypotlucks %}
         <ul>
         {% for pl in mypotlucks %}
-            <li><a href="{% url 'mainapp:potluck' pl.id %}">{{ pl.name }} on {{ pl.date }}</a></li>
+            <li><a href="{% url 'mainapp:potluck' pl.id %}">{{ pl.name }} on {{ pl.start_date_time }}</a></li>
         {% endfor %}
         </ul>
         {% else %}
