@@ -1,4 +1,6 @@
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+#from json import JsonResponse
+
+from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
 from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
@@ -97,7 +99,8 @@ def all_events(request):
     for event in all_events:                                                                                             
         out.append({                                                                                                     
             'title': event.name,
-            'start': event.date.strftime("%m/%d/%Y, %H:%M:%S"),                                                                                         
+            'start': event.date.strftime("%m/%d/%Y, %H:%M:%S"),
+            'end' : event.date.strftime("%m/%d/%Y, %H:%M:%S"),
             'host': event.host,                                                             
         })                                                                                                                                                                                                                         
-    return HttpResponse(json.dumps(out))
+    return JsonResponse(out, safe=False)
