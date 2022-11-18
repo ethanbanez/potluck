@@ -5,13 +5,6 @@ const puppeteer = require('puppeteer');
 describe('Testing Potluck', function() {
 	let browser;
 	let page;
-    let potluckName
-    let potluckDateField
-    let potluckSubmit
-    let potluckView
-	let potluckHost
-	let foodItem
-	let addFoodBtn
     let createPotluckBtn
 	let landingPage = 'http://127.0.0.1:8000'
 
@@ -39,20 +32,17 @@ describe('Testing Potluck', function() {
         it('Enter Potluck Data', async () => {
             await page.type("#name", "TestLuck1");
             var date = new Date();
-            var stringDate = date.getMonth() + date.getDay() + "00" + date.getFullYear() + date.getHours() + date.getMinutes() + "PM";
+            var stringDate = date.getMonth().toString() + date.getDate().toString() + "00" + date.getFullYear() + date.getHours() + date.getMinutes() + "PM";
             await page.type("#datetime-input", stringDate)
 			await page.type("#host","Test Host")
 			await page.type("#food1","Strawberry Rhubarb Pie")
             await page.click("#submit");
-            await page.waitForNavigation();
         }).timeout(40000)
 	})
 
 	describe('View Potlucks', function() {
 		it('View TestLuck', async () => {
-            await page.click("#nav-bar > a:nth-child(1)");
-            await page.waitForNavigation();
-			const found = (await page.content()).match(/TestLuck/)
+			const found = (await page.content()).match("TestLuck1")
 			assert(!!found == true)
 		}).timeout(60000)
 	})
