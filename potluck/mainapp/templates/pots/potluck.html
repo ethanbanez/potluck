@@ -8,6 +8,13 @@
     </head>
 
     <body>
+        <nav id="nav-bar">
+            <a href="{% url 'mainapp:calendar' %}">Calendar</a>
+            <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
+            <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
+            <a href="{% url 'mainapp:index' %}">Home</a>
+        </nav>
+
         <h1>{{ potluck.name }}</h1>
         <h2>Hosted by {{ potluck.host }} on {{ potluck.date }}</h2>
         {% if items %}
@@ -28,6 +35,5 @@
             <p>No items for selected potluck</p>
         {% endif %}
         </form>
-        <a href="{% url 'mainapp:index' %}">Back to Home</a>
     </body>
 </html>

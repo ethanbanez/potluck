@@ -9,8 +9,12 @@
     </head>
 
     <body>
+        <nav id="nav-bar">
+            <a href="{% url 'mainapp:calendar' %}">Calendar</a>
+            <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
+            <a href="{% url 'mainapp:index' %}">Home</a>
+        </nav>
         <h1>View your potlucks</h1>
-        <img src="https://vak1969.com/wp-content/uploads/2019/01/Food-Unites-All-of-Us-Horizontal-640x426.jpg" alt="#foodUnitesUs">
         <h3>Here is your list of potlucks:</h3>
         {% if mypotlucks %}
         <ul>
@@ -21,7 +25,5 @@
         {% else %}
             <p>No potlucks are available.</p>
         {% endif %}
-
-        <a href="{% url 'mainapp:index' %}">Back to home</a>
     </body>
 </html>

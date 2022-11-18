@@ -3,9 +3,11 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'pots/style.css' %}">
     <link rel="stylesheet" href="{% static 'pots/calendar.css' %}">
+    <script type="text/javascript" src="{% static '/pots/calendar.js' %}" ></script>
 
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"/> -->
     <!-- DEPRICATED -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"/> -->
+    
     <!-- <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css"/> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -13,7 +15,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
     <script>
-        
         $(document).ready(function () {
             var calendar = $('#calendar').fullCalendar({
                 header: {
@@ -68,16 +69,16 @@
 
             });
         });
-
     </script>
+
 </head>
 <body>
-    <h2>Potluck Calendar</h2>
-    <div id="nav-bar">
-        <a href="{% url 'mainapp:index' %}">Back to Home</a>
+    <nav id="nav-bar">
         <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
-        <a href="{% url 'mainapp:create_potluck' %}">Create Potluck</a>
-      </div>
+        <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
+        <a href="{% url 'mainapp:index' %}">Home</a>
+    </nav>
+    <h1>Time Measured in Potlucks</h1>
     <br/>
     <div class="container">
         <div id="calendar"></div>
