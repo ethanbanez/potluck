@@ -18,6 +18,11 @@
     <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
     <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
   </nav>
+  {% if user.is_authenticated %}
+  <p>Welcome {{ user.username }}</p>
+  {% else %}
+  <a href="{% url 'login' %}"> Log In</a>
+  {% endif %}
   <h1>Potlucks Unite.</h1>
   <img src="https://vak1969.com/wp-content/uploads/2019/01/Food-Unites-All-of-Us-Horizontal-640x426.jpg" alt="#foodUnitesUs">
 </body>

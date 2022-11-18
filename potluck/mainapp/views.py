@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 from datetime import timedelta, datetime
 
 # imports the potluck models to query from
@@ -28,6 +29,7 @@ def PotlucksView(request):
     return HttpResponse(template.render(context, request))
 
 # for creating a potluck
+@login_required
 def CreatePotluckView(request):
     potluck_list = Potluck.objects
     template_name = "pots/create_potluck.html"
