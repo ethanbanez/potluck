@@ -5,7 +5,7 @@
 
   This webpage is the main or home page of the portluck website.
 -->
-<html lang="en">
+<html lang="en">`
   <head>
     <title>TheLuckyPot</title>
     {% load static %}
@@ -16,8 +16,16 @@
   <h1>
     Welcome to the Dream Land for Potlucks<br>
   </h1>
-  <p>by Team Garrix: Todd, Nancy, Valentina, and Ethan</p>
-  <a href="{% url 'potlucks' %}">Potlucks</a>
-  <a href="{% url 'create_potluck' %}">Create Potluck</a>
+  <div id="nav-bar">
+    <a href="{% url 'mainapp:calendar' %}">View Calendar</a>
+    <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
+    <a href="{% url 'mainapp:create_potluck' %}">Create Potluck</a>
+  </div>
+  <img id="logo" src="http://eurestcafes.compass-usa.com/verizon/PublishingImages/Food%20Unites%20Us%20Logo%204C%20Dk%20Gray.png">
 </body>
+
+<footer>
+  <p>by Team Garrix: Todd, Nancy, Valentina, and Ethan</p>
+</footer>
+
 </html>

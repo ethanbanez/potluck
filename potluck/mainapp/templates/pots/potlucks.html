@@ -15,13 +15,13 @@
         {% if mypotlucks %}
         <ul>
         {% for pl in mypotlucks %}
-            <li>{{ pl.name }} on {{ pl.date }}</li>
+            <li><a href="{% url 'mainapp:potluck' pl.id %}">{{ pl.name }} on {{ pl.date }}</a></li>
         {% endfor %}
         </ul>
         {% else %}
             <p>No potlucks are available.</p>
         {% endif %}
 
-        <a href="{% url 'index' %}">Back to home</a>
+        <a href="{% url 'mainapp:index' %}">Back to home</a>
     </body>
 </html>

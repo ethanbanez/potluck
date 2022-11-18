@@ -2,6 +2,10 @@ html {
     background: #e9c8a4;
 }
 
+h1 {
+    font-weight: normal;
+}
+
 body, input {
     text-align: center;
     font-size: large;
@@ -23,10 +27,6 @@ li, #submit {
     padding: 5px;
 }
 
-#datetime-input, input {
-    flex-direction: row-reverse;
-}
-
 a {
     color: #503923;
 }
@@ -35,8 +35,40 @@ a:hover {
     color: hsl(24, 100%, 46%);
 }
 
-/* FOR CREATE POTLUCK PAGE */
+/* HOMEPAGE */
+#nav-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+    font-size: larger;
+
+    border-top: 6px solid rgb(96, 80, 80);
+    border-bottom: 6px solid rgb(96, 80, 80);
+    border-radius: 5px;
+
+    padding: 0.3em;
+    margin: 1em;
+}
+
+#nav-bar a {
+    padding: 0.5em;
+}
+
+#logo {
+    padding-top: 0.7em;
+    max-width: 23%;
+}
+
+footer {
+    padding-top: 1.5em;
+}
+
+/* CREATE POTLUCK PAGE */
 #create-potluck {
-    max-width: 40%; 
+    max-width: 30%;
     height: auto;
+}
+
+#datetime-input, input {
+    flex-direction: row-reverse;
 }
