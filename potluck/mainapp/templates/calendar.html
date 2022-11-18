@@ -2,8 +2,10 @@
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+    <link rel="stylesheet" href="{% static 'pots/calendar.css' %}">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"/>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"/> -->
+    <!-- DEPRICATED -->
     <!-- <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css"/> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -46,7 +48,7 @@
                 },
 
                 eventClick: function (event) {
-                    if (confirm("Are you sure you want to remove it?")) {
+                    if (confirm("You've selected this potluck!")) {
                         var id = event.id;
                         $.ajax({
                             type: "GET",
@@ -58,7 +60,7 @@
                                 alert('Event Removed');
                             },
                             error: function (data) {
-                                alert('There is a problem!!!');
+                                alert('Cool!!!');
                             }
                         });
                     }
