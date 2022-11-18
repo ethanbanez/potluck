@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
     <script>
-
+        
         $(document).ready(function () {
             var calendar = $('#calendar').fullCalendar({
                 header: {
@@ -19,7 +19,7 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                events: '/mainapp/all_events',
+                events: "{% url 'mainapp:all_events' %}",
                 selectable: true,
                 selectHelper: true,
                 editable: true,
@@ -31,7 +31,7 @@
                         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
                         $.ajax({
                             type: "GET",
-                            url: '/add_event',
+                            url: "{% url 'mainapp:all_events' %}",
                             data: {'title': title, 'start': start, 'end': end},
                             dataType: "json",
                             success: function (data) {
