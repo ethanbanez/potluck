@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mocha": "^10.1.0",
+    "n": "^9.0.1",
+    "puppeteer": "^19.2.2"
+  },
+  "scripts": {
+    "test": "mocha ./tests/*"
+  }
+}
