@@ -56,13 +56,12 @@ def PotluckView(request, potluck_id):
 
 def addrecord(request):
     x = request.POST['name']
-    y = request.POST['date']
+    y = request.POST['start_date']
+    w = request.POST['end_date']
     z = request.POST['host']
 
-    format = "%Y-%m-%dT%H:%M"
     
-    d=datetime.strptime(y, format)
-    potluck = Potluck(name=x, start_date_time=d, end_date_time=d + timedelta(hours = 1), host=z)
+    potluck = Potluck(name=x, start_date_time=y, end_date_time=w, host=z)
     potluck.save()
 
     #iterate through foods

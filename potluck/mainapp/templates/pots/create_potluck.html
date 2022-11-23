@@ -26,13 +26,18 @@
                 </li>
 
                 <li>
-                    <label for="date">What is the date of your potluck?</label>
-                    <input id="datetime-input" type="datetime-local" id="date" name="date" required>
+                    <label for="start_date">What is the start date of your potluck?</label>
+                    <input id="datetime-input" type="datetime-local" id="start_date" name="start_date" required>
+                </li>
+
+                <li>
+                    <label for="end_date">What is the end date of your potluck?</label>
+                    <input id="datetime-input" type="datetime-local" id="end_date" name="end_date" required>
                 </li>
 
                 <li>
                     <label for="host">Who is hosting the potluck?</label>
-                    <input type="text" id="host" name="host" required>
+                    <input type="text" id="host" name="host" value="{{ user.username }}" required>
                 </li>
 
                 <li>What foods would you like people to bring?</li>
