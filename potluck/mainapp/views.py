@@ -20,6 +20,7 @@ def index(request):
 
 # should be a generic list view (generic.ListView)
 # view of the potlucks
+@login_required
 def PotlucksView(request):
     mypotlucks = Potluck.objects.all().values()
     template = loader.get_template("pots/potlucks.html")
@@ -35,6 +36,7 @@ def CreatePotluckView(request):
     template_name = "pots/create_potluck.html"
     return render(request, template_name, {})
 
+@login_required
 def PotluckView(request, potluck_id):
     try:
         potluck=Potluck.objects.get(pk=potluck_id)
@@ -78,21 +80,23 @@ def addrecord(request):
 
 def item_sign_up(request, potluck_id):
 
-    people = request.POST.copy()
+    people = request.POST.dict()
 
     items = Item.objects.filter(potluck__pk = potluck_id)                                   
 
     for it in items:
         try:
             p = people.pop(it.item)
-            it.contributor = p[0]
-            it.contributor_email = p[1]
-            it.save()
+            if p == 'on':
+                it.contributor = request.user.first_name
+                it.contributor_email = request.user.email
+                it.save()
         except KeyError:
             pass
 
     return HttpResponseRedirect(reverse('mainapp:potluck', args=(potluck_id,)))
 
+@login_required
 def calendar(request):
     all_events = Potluck.objects.all()
     context = {

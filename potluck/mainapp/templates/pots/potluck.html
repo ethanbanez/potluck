@@ -26,7 +26,7 @@
                 {% if it.contributor %}
                 <li>{{ it.contributor }} is bringing {{ it.item }}</li>
                 {% else %}
-                <li>{{ it.item }}<input type="text" id="{{ it }}" name="{{ it }}" placeholder="Name"><input type="text" id="{{ it }}" name="{{ it }}" placeholder="Email"></li>
+                <li>{{ it.item }}<input type="checkbox" id="{{ it }}" name="{{ it }}"></li>
                 {% endif %}
                 {% endfor %}
                 <input id="submit" type="submit" value="Sign Up">
