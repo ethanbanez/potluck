@@ -1,8 +1,22 @@
 foodCount = 1;
 
 function addItem(){
+    var foodList = document.getElementById("items");
     foodCount++;
-    document.getElementById("items").innerHTML += "<li><input type=\"text\" id=\"food" + foodCount + "\" name=\"food" + foodCount + "\"></li>";
+    var items=[];
+    var fields=foodList.getElementsByTagName('input');
+
+    for (var i = 0; i < fields.length; i++){
+        var field = fields[i];
+        items.push(field.value);
+    }
+
+    const node = "<li><input type=\"text\" id=\"food" + foodCount + "\" name=\"food" + foodCount + "\"></li>";
+    foodList.innerHTML += node;
+
+    for (var i = 0; i < fields.length-1; i++){
+        fields[i].value = items[i];
+    }
 }
 
 function removeItem(){
