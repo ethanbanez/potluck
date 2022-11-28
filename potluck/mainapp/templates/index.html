@@ -18,23 +18,24 @@
     <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
     <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
   </nav>
-  {% if user.is_authenticated %}
-  <ul>
-  <li><p>Welcome {{ user.first_name }}</p></li>
-  <li><a href="{% url 'logout' %}">Log out</a></li>
-  </ul>
-  {% else %}
-  <ul>
-  <li><a href="{% url 'login' %}">Log In</a></li>
-  <li><a href="{% url 'register' %}">Register</a></li>
-  </ul>
+  <div id="login">
+    {% if user.is_authenticated %}
+    <ul>
+    <li><p>Welcome {{ user.first_name }}</p></li>
+    <li><a href="{% url 'logout' %}">Log out</a></li>
+    </ul>
+    {% else %}
+    <ul>
+    <li><a href="{% url 'login' %}">Log In</a></li>
+    <li><a href="{% url 'register' %}">Register</a></li>
+    </ul>
+  </div>
   {% endif %}
-  <h1>Potlucks Unite.</h1>
+  <!-- <h1>Potlucks Unite.</h1> -->
   <img src="https://vak1969.com/wp-content/uploads/2019/01/Food-Unites-All-of-Us-Horizontal-640x426.jpg" alt="#foodUnitesUs">
 </body>
 
 <footer>
   <p>by Team Garrix: Todd, Nancy, Valentina, and Ethan</p>
 </footer>
-
 </html>

@@ -1,5 +1,6 @@
 html {
-    background: #e9dbcc;
+    background: #e2dcd5;
+    /* background: #e9dbcc; */
     /* background: #fbf6f1; */
 }
 
@@ -23,6 +24,15 @@ body, ul {
     list-style: none;
     padding-left: 0;
 }
+
+/* #login {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+} */
 
 li, #submit {
     padding: 5px;
@@ -64,7 +74,7 @@ a:active { text-decoration: none; }
 
 #logo {
     padding-top: 0.7em;
-    max-width: 23%;
+    max-width: 13%;
 }
 
 footer {

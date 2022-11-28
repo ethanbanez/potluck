@@ -1,6 +1,23 @@
-<h2>Log In</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
-</form>
+<!DOCTYPE html>
+<!--
+  Potluck Project
+  CS 130: Software Engineering
+
+  This webpage is the main or home page of the portluck website.
+-->
+<html lang="en">
+  <head>
+    <title>Log In</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+  </head>
+  
+  <body>
+    <h1>Log In</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+  </body>
+</html>
