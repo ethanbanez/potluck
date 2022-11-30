@@ -1,0 +1,11 @@
+li::before {
+    content: "\00BB";;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+p {
+    font-size: 21px;
+}

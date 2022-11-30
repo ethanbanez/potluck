@@ -18,19 +18,22 @@
     <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
     <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
   </nav>
+
   <div id="login">
     {% if user.is_authenticated %}
-    <ul>
-    <li><p>Welcome {{ user.first_name }}</p></li>
-    <li><a href="{% url 'logout' %}">Log out</a></li>
-    </ul>
+    <div>
+    <h1>Welcome {{ user.first_name }}</h1>
+    <a href="{% url 'logout' %}"><button>Log Out</button></a>
+    </div>
     {% else %}
-    <ul>
-    <li><a href="{% url 'login' %}">Log In</a></li>
-    <li><a href="{% url 'register' %}">Register</a></li>
-    </ul>
+    <div>
+      <a href="{% url 'login' %}"><button>Log In</button></a>
+      <a href="{% url 'register' %}"><button>Register</button></a>
+    </div>
+    {% endif %}
+
+
   </div>
-  {% endif %}
   <!-- <h1>Potlucks Unite.</h1> -->
   <img src="https://vak1969.com/wp-content/uploads/2019/01/Food-Unites-All-of-Us-Horizontal-640x426.jpg" alt="#foodUnitesUs">
 </body>

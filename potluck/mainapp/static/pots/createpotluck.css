@@ -1,0 +1,17 @@
+/* CREATE POTLUCK PAGE */
+#create-potluck {
+    max-width: 30%;
+    height: auto;
+}
+
+#datetime-input, input {
+    flex-direction: row-reverse;
+}
+
+fieldset {
+    border: none;
+}
+
+#submit {
+    margin: 6px;
+}

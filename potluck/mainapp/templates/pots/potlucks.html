@@ -6,6 +6,7 @@
         <title>Potlucks View</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+        <link rel="stylesheet" href="{% static 'pots/potlucks.css' %}">
     </head>
 
     <body>
@@ -14,12 +15,14 @@
             <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
             <a href="{% url 'mainapp:index' %}">Home</a>
         </nav>
-        <h1>View your potlucks</h1>
-        <h3>Here is your list of potlucks:</h3>
+        <h1>Here is your list of potlucks:</h1>
         {% if mypotlucks %}
-        <ul>
+        <p>Click on each to view event details</p>
+        <ul id="potluck-list">
         {% for pl in mypotlucks %}
-            <li><a href="{% url 'mainapp:potluck' pl.id %}">{{ pl.name }} on {{ pl.start_date_time }}</a></li>
+            <li>
+                <a href="{% url 'mainapp:potluck' pl.id %}">{{ pl.name }} on {{ pl.start_date_time }}</a>
+            </li>
         {% endfor %}
         </ul>
         {% else %}

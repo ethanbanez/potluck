@@ -8,8 +8,10 @@
     </head>
     
     <body>
-        <p>Logged out!</p>
-        <a href="{% url 'login' %}">Click here to log in again</a>
-        <a href="{% url 'mainapp:index' %}">Click here to return home</a>
+        <h1>Logged Out Successfully</h1>
+        <div>
+            <a href="{% url 'login' %}"><button>Click here to log in again</button></a>
+            <a href="{% url 'mainapp:index' %}"><button>Click here to return home</button></a>
+        </div>
     </body>
 </html>
