@@ -16,35 +16,34 @@ describe("Calendar", function() {
 		it('Launch browser', async () => {
 			browser = await puppeteer.launch({headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox']})
 			page = await browser.newPage();
+            page.setDefaultNavigationTimeout(0)
 		}).timeout(10000)
 
 		it('Navigate to landing page', async () => {
-			await page.goto(landingPage, { waitUntil: 'networkidle0', timeout: 60000 })
+			await page.goto(landingPage, { timeout: 0 })
 		}).timeout(20000)
 	})
 
-    describe('Log In', function() {
-        it('Navigate to Log in', async () => {
-            await page.goto(loginPage, {waitUntil: 'networkidle0', timeout: 0})
+    describe('Verify Calendar Rendered', function() {
+        it('View Calendar', async () => {
+            await page.goto(calendarPage, { timeout: 0})
+            
         })
 
         it('Log In', async () => {
             await page.type("#id_username", username)
             await page.type("#id_password", password)
-            await page.click("body > form > button")
-            await page.waitForNavigation({waitUntil: 'load', timeout: 0})
-        }).timeout(100000)
-    })
-
-    describe('Navigate to Calendar', function() {
-        it('View Calendar', async () => {
-            await page.goto(calendarPage, {waitUntil: 'networkidle0', timeout: 0})
-        })
-
+            await Promise.all([
+                page.click("#btn-login"),
+                page.waitForNavigation({timeout: 0})
+            ])
+        }).timeout(15000)
+        
         it('Verify Potluck rendered', async () => {
             const found = (await page.content()).match("TestLuck1")
+            console.log(page.url())
 			assert(!!found == true)
-        }).timeout(40000)
+        }).timeout(0)
     })
 
     describe('Page tear down', function() {
