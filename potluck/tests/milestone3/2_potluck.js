@@ -32,14 +32,17 @@ describe('Potluck', function() {
             await page.type("#id_username", username)
             await page.type("#id_password", password)
 			await Promise.all([
-				page.click("#btn-login"),
-				page.waitForNavigation({waitUntil: 'domcontentloaded', timeout: 0})
+				await page.evaluate(() => {
+					document.querySelector('#btn-login').click()
+				}),
+				// page.click("#btn-login"),
+				page.waitForNavigation({waitUntil: 'networkidle0', timeout: 0}),
+				console.log(await page.url())
 			])
         }).timeout(20000)
 
         it('Enter Potluck Data', async () => {
             await page.type("#name", "TestLuck1");
-			console.log(page.url())
             var date = new Date();
             var stringDate1 = date.getMonth().toString() + date.getDate().toString() + "00" + date.getFullYear() + date.getHours() + date.getMinutes() + "PM";
             var stringDate2 = date.getMonth().toString() + date.getDate().toString() + "00" + date.getFullYear() + (date.getHours()+2) + date.getMinutes() + "PM";
@@ -48,7 +51,11 @@ describe('Potluck', function() {
 			await page.type(dateTimes[2], stringDate2)
 			await page.type("#food1","Strawberry Rhubarb Pie")
 			Promise.all([
-				page.click("#submit", {waitUntil: 'domcontentloaded', timeout: 0}),
+				await page.evaluate(() => {
+					document.querySelector('#submit').click()
+				}),
+				// page.$eval('HTMLElementSelector', element => element.click()),
+				// page.click("#submit", {waitUntil: 'domcontentloaded', timeout: 0}),
 				page.waitForNavigation({timeout: 0})
 			])
         }).timeout(30000)

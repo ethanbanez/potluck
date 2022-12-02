@@ -34,12 +34,11 @@ describe("Calendar", function() {
             await page.type("#id_password", password)
             await Promise.all([
                 page.click("#btn-login"),
-                page.waitForNavigation({timeout: 0})
+                page.waitForNavigation({timeout: 0}),
             ])
         }).timeout(15000)
         
         it('Verify Potluck rendered', async () => {
-            await page.goto(calendarPage, {timeout: 0})
             const found = (await page.content()).match("TestLuck1")
 			assert(!!found == true)
         }).timeout(0)
