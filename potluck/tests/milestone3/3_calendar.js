@@ -9,7 +9,6 @@ describe("Calendar", function() {
     let username = "puppeteer_test_user";
     let password = "puppeteertestpassword";
     let landingPage = 'http://127.0.0.1:8000'
-    let loginPage = "http:127.0.0.1:8000/accounts/login"
     let calendarPage = "http://127.0.0.1:8000/mainapp/calendar"
 
     describe('Page setup', function() {
@@ -40,8 +39,8 @@ describe("Calendar", function() {
         }).timeout(15000)
         
         it('Verify Potluck rendered', async () => {
+            await page.goto(calendarPage, {timeout: 0})
             const found = (await page.content()).match("TestLuck1")
-            console.log(page.url())
 			assert(!!found == true)
         }).timeout(0)
     })

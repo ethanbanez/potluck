@@ -56,7 +56,7 @@ describe('Potluck', function() {
 
 	describe('View Potlucks', function() {
 		it('View TestLuck', async () => {
-			const found = (await page.content()).match("login")
+			const found = (await page.content()).match("TestLuck1")
 			assert(!!found == true)
 		}).timeout(60000)
 	})
