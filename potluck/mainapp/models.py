@@ -4,6 +4,16 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from datetime import datetime
 
+DIETARY_NEEDS = (
+    ('none','-- None --'),
+    ('dairy','Dairy Free'),
+    ('nuts','Nut Free'),
+    ('gluten','Gluten Free'),
+    ('vegetarian', 'Vegetarian'),
+    ('vegan','Vegan'),
+    ('kosher','Kosher'),
+)
+
 class Potluck(models.Model):
     name = models.CharField(max_length=64)
     start_date_time = models.DateTimeField(default=datetime.now)
@@ -22,6 +32,8 @@ class Item(models.Model):
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    mobile_phone = models.CharField(max_length=12, blank=True, null=True)
+    dietary_needs = models.CharField(max_length=12, choices=DIETARY_NEEDS, default='none')
     def __str__(self):
         return str(self.user.username)
 
