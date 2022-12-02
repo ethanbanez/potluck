@@ -106,11 +106,12 @@ def calendar(request):
 def all_events(request):                                                                                                 
     all_events = Potluck.objects.all()                                                                                    
     out = []                                                                                                             
-    for event in all_events:                                                                                             
+    for event in all_events:                                                                                         
         out.append({                                                                                                     
             'title': event.name,
             'start': event.start_date_time.strftime("%m/%d/%Y, %H:%M:%S"),
             'end' : event.end_date_time.strftime("%m/%d/%Y, %H:%M:%S"),
-            'host': event.host,                                                             
+            'host': event.host,      
+            'id': Potluck.objects.filter(name=event.name).values('id')[0]['id'],                                                       
         })                                                                                                                                                                                                                         
     return JsonResponse(out, safe=False)
