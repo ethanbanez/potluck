@@ -3,81 +3,31 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'pots/style.css' %}">
     <link rel="stylesheet" href="{% static 'pots/calendar.css' %}">
-
+    <link rel="stylesheet" href="{% static 'pots/addtocalendar.css' %}">
+    <!-- above css addition to calendar is extension of:  -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"/> -->
-    <!-- DEPRICATED -->
+
+
+    <!-- Need Jquery for JS script -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="{% static '/pots/calendar.js' %}"></script>
+    
     <!-- <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css"/> -->
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css"/>
+     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-    <script>
-        
-        $(document).ready(function () {
-            var calendar = $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                events: "{% url 'mainapp:all_events' %}",
-                selectable: true,
-                selectHelper: true,
-                editable: true,
-                eventLimit: true,
-                select: function (start, end, allDay) {
-                    var title = prompt("Enter Event Title");
-                    if (title) {
-                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-                        $.ajax({
-                            type: "GET",
-                            url: "{% url 'mainapp:all_events' %}",
-                            data: {'title': title, 'start': start, 'end': end},
-                            dataType: "json",
-                            success: function (data) {
-                                calendar.fullCalendar('refetchEvents');
-                                alert("Added Successfully");
-                            },
-                            error: function (data) {
-                                alert('There is a problem!!!');
-                            }
-                        });
-                    }
-                },
 
-                eventClick: function (event) {
-                    if (confirm("You've selected this potluck!")) {
-                        var id = event.id;
-                        $.ajax({
-                            type: "GET",
-                            url: '/remove',
-                            data: {'id': id},
-                            dataType: "json",
-                            success: function (data) {
-                                calendar.fullCalendar('refetchEvents');
-                                alert('Event Removed');
-                            },
-                            error: function (data) {
-                                alert('Cool!!!');
-                            }
-                        });
-                    }
-                },
-
-            });
-        });
-
-    </script>
 </head>
 <body>
-    <h2>Potluck Calendar</h2>
-    <div id="nav-bar">
-        <a href="{% url 'mainapp:index' %}">Back to Home</a>
+    <nav id="nav-bar">
         <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
-        <a href="{% url 'mainapp:create_potluck' %}">Create Potluck</a>
-      </div>
+        <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
+        <a href="{% url 'mainapp:index' %}">Home</a>
+    </nav>
+    <h1>Time Measured in Potlucks</h1>
     <br/>
     <div class="container">
         <div id="calendar"></div>

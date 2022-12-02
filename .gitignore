@@ -6,6 +6,9 @@ __pycache__
 db.sqlite3
 media
 
+# node
+node_modules
+
 # Backup files # 
 *.bak 
 
@@ -138,3 +141,6 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# other
+potluck/package-lock.json

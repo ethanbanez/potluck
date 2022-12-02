@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
+from django.contrib.auth.decorators import login_required
+from datetime import timedelta, datetime
 
 # imports the potluck models to query from
 # from .models import Potlucks
@@ -18,6 +20,7 @@ def index(request):
 
 # should be a generic list view (generic.ListView)
 # view of the potlucks
+@login_required
 def PotlucksView(request):
     mypotlucks = Potluck.objects.all().values()
     template = loader.get_template("pots/potlucks.html")
@@ -27,11 +30,13 @@ def PotlucksView(request):
     return HttpResponse(template.render(context, request))
 
 # for creating a potluck
+@login_required
 def CreatePotluckView(request):
     potluck_list = Potluck.objects
     template_name = "pots/create_potluck.html"
     return render(request, template_name, {})
 
+@login_required
 def PotluckView(request, potluck_id):
     try:
         potluck=Potluck.objects.get(pk=potluck_id)
@@ -51,9 +56,12 @@ def PotluckView(request, potluck_id):
 
 def addrecord(request):
     x = request.POST['name']
-    y = request.POST['date']
+    y = request.POST['start_date']
+    w = request.POST['end_date']
     z = request.POST['host']
-    potluck = Potluck(name=x, date=y, host=z)
+
+    
+    potluck = Potluck(name=x, start_date_time=y, end_date_time=w, host=z)
     potluck.save()
 
     #iterate through foods
@@ -71,21 +79,23 @@ def addrecord(request):
 
 def item_sign_up(request, potluck_id):
 
-    people = request.POST.copy()
+    people = request.POST.dict()
 
     items = Item.objects.filter(potluck__pk = potluck_id)                                   
 
     for it in items:
         try:
             p = people.pop(it.item)
-            it.contributor = p[0]
-            it.contributor_email = p[1]
-            it.save()
+            if p == 'on':
+                it.contributor = request.user.first_name
+                it.contributor_email = request.user.email
+                it.save()
         except KeyError:
             pass
 
     return HttpResponseRedirect(reverse('mainapp:potluck', args=(potluck_id,)))
 
+@login_required
 def calendar(request):
     all_events = Potluck.objects.all()
     context = {
@@ -99,8 +109,8 @@ def all_events(request):
     for event in all_events:                                                                                             
         out.append({                                                                                                     
             'title': event.name,
-            'start': event.date.strftime("%m/%d/%Y, %H:%M:%S"),
-            'end' : event.date.strftime("%m/%d/%Y, %H:%M:%S"),
+            'start': event.start_date_time.strftime("%m/%d/%Y, %H:%M:%S"),
+            'end' : event.end_date_time.strftime("%m/%d/%Y, %H:%M:%S"),
             'host': event.host,                                                             
         })                                                                                                                                                                                                                         
     return JsonResponse(out, safe=False)

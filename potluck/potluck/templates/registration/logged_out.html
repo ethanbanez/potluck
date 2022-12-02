@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TheLuckyPot</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+    </head>
+    
+    <body>
+        <h1>Logged Out Successfully</h1>
+        <div>
+            <a href="{% url 'login' %}"><button>Click here to log in again</button></a>
+            <a href="{% url 'mainapp:index' %}"><button>Click here to return home</button></a>
+        </div>
+    </body>
+</html>

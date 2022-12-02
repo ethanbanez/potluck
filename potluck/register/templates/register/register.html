@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TheLuckyPot</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+    </head>
+    
+    <body>
+        <h1>Create an Account</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button id="btn-register" type="submit">Register</button>
+        </form>
+    </body>
+</html>
