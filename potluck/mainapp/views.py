@@ -1,12 +1,14 @@
 #from json import JsonResponse
 
 from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from datetime import timedelta, datetime
+from .forms import EditProfileForm, EditUserForm
 
 # imports the potluck models to query from
 # from .models import Potlucks
@@ -115,3 +117,27 @@ def all_events(request):
             'id': Potluck.objects.filter(name=event.name).values('id')[0]['id'],                                                       
         })                                                                                                                                                                                                                         
     return JsonResponse(out, safe=False)
+
+# Create your views here.
+#def edit_profile(request):
+#	context ={}
+#	context['form']= EditProfileForm()
+#	return render(request, "profile.html", context)
+
+# adapted from https://dev.to/earthcomfy/django-update-user-profile-33ho
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='users-profile')
+    else:
+        user_form = EditUserForm(instance=request.user)
+        profile_form = EditProfileForm(instance=request.user.profile)
+
+    return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form})
