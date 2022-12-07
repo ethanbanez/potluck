@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 DIETARY_NEEDS = (
-    ('none','-- None --'),
     ('dairy','Dairy Free'),
     ('nuts','Nut Free'),
     ('gluten','Gluten Free'),
@@ -17,7 +16,7 @@ DIETARY_NEEDS = (
 # creating a form
 class EditProfileForm(forms.ModelForm):
     mobile_phone = forms.CharField(max_length=12)
-    dietary_needs = forms.CharField(max_length=12)
+    dietary_needs = forms.MultipleChoiceField(choices=DIETARY_NEEDS, widget=forms.CheckboxSelectMultiple())
     
     class Meta:
         model = Profile
