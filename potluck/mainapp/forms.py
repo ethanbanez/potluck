@@ -16,19 +16,24 @@ DIETARY_NEEDS = (
 # creating a form
 class EditProfileForm(forms.ModelForm):
     mobile_phone = forms.CharField(max_length=12)
-    dietary_needs = forms.MultipleChoiceField(choices=DIETARY_NEEDS, widget=forms.CheckboxSelectMultiple())
+    #dietary_needs = forms.MultipleChoiceField(choices=DIETARY_NEEDS, widget=forms.CheckboxSelectMultiple())
+
     
     class Meta:
         model = Profile
-        fields = ['mobile_phone', 'dietary_needs']
+        fields = ['mobile_phone', 
+        #'dietary_needs'
+        ]
         
 class EditUserForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=255)
+    last_name = forms.CharField(max_length=255)
     username = forms.CharField(max_length=100,
-                               required=True,
+                               required=False,
                                widget=forms.TextInput(attrs={'class': 'form-control', 'disabled':'true'}))
     email = forms.EmailField(required=True,
                              widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['first_name', 'last_name', 'username', 'email']
