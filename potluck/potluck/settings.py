@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'mysql',
         'USER': 'root',
         'PASSWORD': 'cookie',
-        'HOST': os.environ.get('DB_HOST'),
+        'HOST': os.environ.get('POTLUCK_DB_HOST'),
         'PORT': 3306,
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
