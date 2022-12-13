@@ -1,0 +1,20 @@
+.container {
+	max-width: 75%;
+	height: auto;
+}
+
+button {
+	border-radius: 5px;
+	box-shadow: #9c9cce 0 10px 15px -10px;
+	box-sizing: border-box;
+	cursor: pointer;
+	opacity: 1;
+	outline: 0 solid transparent;
+	padding: 4px 14px;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	width: fit-content;
+	word-break: break-word;
+	border: 0;
+  }

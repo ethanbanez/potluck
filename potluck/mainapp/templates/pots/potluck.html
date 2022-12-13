@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>{{ potluck.name }}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+    </head>
+
+    <body>
+        <nav id="nav-bar">
+            <a href="{% url 'mainapp:calendar' %}">Calendar</a>
+            <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
+            <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
+            <a href="{% url 'mainapp:index' %}">Home</a>
+        </nav>
+
+        <h1>{{ potluck.name }}</h1>
+        <h2>Hosted by {{ potluck.host }} on {{ potluck.start_date_time }}</h2>
+        {% if items %}
+        <p>Sign up to bring an item below</p>
+        <form id="item_sign_up_form" action="{% url 'mainapp:item_sign_up' potluck.id %}" method="post">
+            {% csrf_token %}
+            <ul id="flex-outer">
+                {% for it in items %}
+                {% if it.contributor %}
+                <li>{{ it.contributor }} is bringing {{ it.item }}</li>
+                {% else %}
+                <li>{{ it.item }}<input type="checkbox" id="{{ it }}" name="{{ it }}"></li>
+                {% endif %}
+                {% endfor %}
+                <input id="submit" type="submit" value="Sign Up">
+            </ul>
+        {% else %}
+            <p>No items for selected potluck</p>
+        {% endif %}
+        </form>
+    </body>
+</html>

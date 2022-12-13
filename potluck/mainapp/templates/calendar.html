@@ -1,0 +1,36 @@
+<html>
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'pots/style.css' %}">
+    <link rel="stylesheet" href="{% static 'pots/calendar.css' %}">
+    <link rel="stylesheet" href="{% static 'pots/addtocalendar.css' %}">
+    <!-- above css addition to calendar is extension of:  -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"/> -->
+
+
+    <!-- Need Jquery for JS script -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="{% static '/pots/calendar.js' %}"></script>
+    
+    <!-- <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css"/>
+     -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
+</head>
+<body>
+    <nav id="nav-bar">
+        <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
+        <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
+        <a href="{% url 'mainapp:index' %}">Home</a>
+    </nav>
+    <h1>Time Measured in Potlucks</h1>
+    <br/>
+    <div class="container">
+        <div id="calendar"></div>
+    </div>
+</body>
+</html>

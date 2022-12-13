@@ -8,12 +8,38 @@
 <html lang="en">
   <head>
     <title>TheLuckyPot</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'pots/style.css' %}">
   </head>
       
 <body>
-  <h1>
-    Welcome to the Dream Land for Potlucks<br>
-  </h1>
-  <p>by Team Garrix: Todd, Nancy, Valentina, and Ethan</p>
+  <nav id="nav-bar">
+    <a href="{% url 'mainapp:calendar' %}">Calendar</a>
+    <a href="{% url 'mainapp:potlucks' %}">Potlucks</a>
+    <a href="{% url 'mainapp:create_potluck' %}">New Potluck</a>
+  </nav>
+
+  <div id="login">
+    {% if user.is_authenticated %}
+    <div>
+    <h1>Welcome {{ user.first_name }}</h1>
+    <a href="{% url 'mainapp:profile' %}"><button>Edit Profile</button></a>
+    <a href="{% url 'logout' %}"><button>Log Out</button></a>
+    </div>
+    {% else %}
+    <div>
+      <a href="{% url 'login' %}"><button>Log In</button></a>
+      <a href="{% url 'register' %}"><button>Register</button></a>
+    </div>
+    {% endif %}
+
+
+  </div>
+  <!-- <h1>Potlucks Unite.</h1> -->
+  <img src="https://vak1969.com/wp-content/uploads/2019/01/Food-Unites-All-of-Us-Horizontal-640x426.jpg" alt="#foodUnitesUs">
 </body>
+
+<footer>
+  <p>by Team Garrix: Todd, Nancy, Valentina, and Ethan</p>
+</footer>
 </html>
