@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINs = [
+CSRF_TRUSTED_ORIGINS = [
     'https://potlucks.729tdpe93g7i0.us-west-2.cs.amazonlightsail.com/'
 ]
 
