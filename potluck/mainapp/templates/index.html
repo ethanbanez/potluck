@@ -23,6 +23,7 @@
     {% if user.is_authenticated %}
     <div>
     <h1>Welcome {{ user.first_name }}</h1>
+    <a href="{% url 'mainapp:profile' %}"><button>Edit Profile</button></a>
     <a href="{% url 'logout' %}"><button>Log Out</button></a>
     </div>
     {% else %}

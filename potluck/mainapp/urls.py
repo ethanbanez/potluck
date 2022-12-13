@@ -11,4 +11,5 @@ urlpatterns = [
     path('item_sign_up/<int:potluck_id>', views.item_sign_up, name='item_sign_up'),
     path('calendar', views.calendar, name='calendar'),
     path('all_events', views.all_events, name='all_events'),
+    path('profile', views.profile, name='profile'),
 ]
